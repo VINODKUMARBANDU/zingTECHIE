@@ -1,4 +1,4 @@
-# Zingtechie
+# ZingTechie 
 
 **An AI-powered workspace for intelligent conversations, multi-model integration, and automation.**
 
