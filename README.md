@@ -54,11 +54,9 @@ Rather than relying on a single AI model or isolated tool, Zingtechie aims to pr
 
 Update this section to reflect the technologies used in your project.
 
-- **Frontend:** [Your frontend framework]
-- **Backend:** [Your backend framework]
+- **Frontend:** HTML5, CSS3, JavaScript
+- **Backend:** NodeJS, Java, RestAPI
 - **AI Integration:** LLM provider APIs
-- **Build & Deployment:** [Your deployment tools]
-- **Version Control:** Git and GitHub
 
 ## 🚀 Getting Started
 
