@@ -140,13 +140,17 @@ img{display:block;max-width:100%;}
   align-self:center;
 }
 
+.topbar-brand{
+  display:flex;align-items:center;gap:12px;flex-shrink:0;
+  margin-right:8px;
+}
 .topbar-search{
-  flex:1;max-width:420px;position:relative;margin:0 auto;
+  flex:1;max-width:480px;position:relative;margin:0 16px;
 }
 .topbar-search input{
-  width:100%;height:36px;
+  width:100%;height:38px;
   background:var(--panel);border:1px solid var(--border);
-  border-radius:999px;padding:0 36px 0 38px;
+  border-radius:999px;padding:0 72px 0 40px;
   color:var(--text);font-size:13px;outline:none;
   transition:border-color .2s,box-shadow .2s;
 }
@@ -156,14 +160,14 @@ img{display:block;max-width:100%;}
 }
 .topbar-search input::placeholder{color:var(--muted);}
 .search-icon-left{
-  position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
   color:var(--muted);font-size:14px;pointer-events:none;
 }
 .search-kbd{
-  position:absolute;right:10px;top:50%;transform:translateY(-50%);
-  background:var(--panel-strong);border:1px solid var(--border);
-  border-radius:5px;padding:1px 7px;font-size:10px;color:var(--muted);
-  letter-spacing:.03em;
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+  border-radius:6px;padding:3px 8px;font-size:10px;color:rgba(255,255,255,.7);
+  letter-spacing:.04em;font-weight:600;
 }
 
 .topbar-right{display:flex;align-items:center;gap:8px;}
@@ -313,7 +317,7 @@ img{display:block;max-width:100%;}
   -webkit-text-fill-color:transparent;
 }
 .doc-hero p{
-  color:var(--muted);font-size:1rem;max-width:560px;
+  color:var(--muted);font-size:1rem;max-width:720px;
   line-height:1.65;margin-bottom:32px;
 }
 .hero-stats{display:flex;gap:40px;flex-wrap:wrap;}
@@ -330,7 +334,8 @@ img{display:block;max-width:100%;}
   text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}
 
 /* ── TOC strip ────────────────────────────────────────────────── */
-.toc-strip{
+.toc-strip{display:none!important;}
+.toc-strip-hidden{
   background:var(--panel);border-bottom:1px solid var(--border);
   overflow-x:auto;white-space:nowrap;scrollbar-width:none;
   position:sticky;top:var(--topbar-h);z-index:200;
@@ -365,7 +370,7 @@ img{display:block;max-width:100%;}
 .no-results.show{display:block;}
 
 /* ── Sections wrapper ─────────────────────────────────────────── */
-.sections{padding:40px 40px 80px;max-width:980px;}
+.sections{padding:40px 32px 80px;max-width:none;width:100%;}
 
 .feat-section{
   margin-bottom:64px;
@@ -398,7 +403,7 @@ img{display:block;max-width:100%;}
   font-family:var(--font-head);font-size:1.75rem;
   font-weight:800;letter-spacing:-.035em;margin-bottom:8px;
 }
-.feat-desc{color:var(--muted);font-size:.9rem;line-height:1.65;max-width:620px;margin-bottom:10px;}
+.feat-desc{color:var(--muted);font-size:.9rem;line-height:1.65;max-width:none;margin-bottom:10px;}
 .badge-row{display:flex;flex-wrap:wrap;gap:6px;}
 .badge{
   display:inline-flex;align-items:center;
@@ -543,8 +548,8 @@ img{display:block;max-width:100%;}
   padding:10px 14px;border-radius:var(--r-md);
   background:var(--panel-strong);border:1px solid var(--border);
 }
-.api-groups{display:flex;flex-direction:column;gap:20px;}
-.api-group{
+.api-groups{display:flex;flex-direction:column;gap:20px;width:100%;}
+.api-group{width:100%;}
   background:var(--panel);border:1px solid var(--border);
   border-radius:var(--r-xl);overflow:hidden;
   box-shadow:var(--shadow);
@@ -566,9 +571,9 @@ img{display:block;max-width:100%;}
   background:var(--t1);border:1px solid var(--tb);
   border-radius:999px;padding:2px 10px;
 }
-.api-table-wrap{overflow-x:auto;}
+.api-table-wrap{overflow-x:auto;width:100%;}
 .api-table{
-  width:100%;border-collapse:collapse;min-width:540px;
+  width:100%;border-collapse:collapse;table-layout:auto;
 }
 .api-table th{
   font-size:11px;font-weight:800;text-transform:uppercase;
@@ -576,6 +581,7 @@ img{display:block;max-width:100%;}
   padding:10px 16px;text-align:left;
   background:var(--panel);border-bottom:1px solid var(--border);
 }
+.api-table th:last-child,.api-table td:last-child{width:50%;}
 .api-table td{
   padding:11px 16px;border-bottom:1px solid var(--border);
   vertical-align:middle;font-size:.86rem;
@@ -746,7 +752,7 @@ body{background:var(--bg);letter-spacing:-.012em}
 .topbar{padding:0 28px;background:rgba(255,255,255,.92);border-bottom:1px solid #e8eeea;box-shadow:0 2px 12px rgba(20,50,35,.025)}
 .topbar-menu-btn{background:#f4f7f5;border:1px solid #e5ece8;color:#365248}.topbar-menu-btn:hover{background:#eaf4ef}
 .brand-dot{width:10px;height:10px;background:#0c966b;box-shadow:0 0 0 4px rgba(12,150,107,.12)}
-.brand-name{font-size:18px}.topbar-search{max-width:460px}.topbar-search input{height:40px;background:#f7f9f8;border-color:#e8eeea;padding-left:40px}.topbar-search input:focus{background:#fff;box-shadow:0 0 0 4px rgba(8,127,91,.08)}
+.brand-name{font-size:18px;letter-spacing:-.02em}.topbar-brand{gap:12px;margin-right:12px}.topbar-search{max-width:480px;margin:0 20px}.topbar-search input{height:40px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);padding:0 72px 0 40px;color:#f3faf7}.topbar-search input::placeholder{color:rgba(255,255,255,.55)}.topbar-search input:focus{background:rgba(255,255,255,.16);border-color:rgba(85,214,173,.5);box-shadow:0 0 0 3px rgba(85,214,173,.15)}.search-icon-left{color:rgba(255,255,255,.55)}
 .topbar-btn{height:38px;background:#f6f8f7;border-color:#e5ece8;color:#345248;padding:0 14px}.topbar-btn.primary{background:#087f5b;box-shadow:0 5px 14px rgba(8,127,91,.18)}
 .sidebar{background:#fbfcfb;border-right:1px solid #e8eeea;padding:24px 13px}.sidebar-section-label{padding:12px 12px 10px;font-size:10px;letter-spacing:.14em;color:#8a9891}
 .nav-link{flex-direction:row;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:13px;font-weight:700;color:#42584f;margin-bottom:4px}.nav-link span{display:none}.nav-link::before{left:0;top:8px;bottom:8px;width:3px}.nav-link.active{background:#e9f5ef;color:#087f5b;box-shadow:none;border:1px solid #d5eadf}.nav-link.active::before{background:#087f5b}
@@ -754,10 +760,10 @@ body{background:var(--bg);letter-spacing:-.012em}
 .doc-hero{padding:64px clamp(28px,5vw,72px) 48px;background:linear-gradient(115deg,#f0f8f3 0%,#fff 58%,#f7fbf8 100%);border-bottom:1px solid #e7eee9}
 .doc-hero::before{width:520px;height:520px;right:-160px;top:-240px;background:radial-gradient(circle,rgba(56,171,124,.13),transparent 68%)}.doc-hero::after{display:none}
 .hero-eyebrow{color:#087f5b;font-size:10px;letter-spacing:.16em;margin-bottom:16px}.hero-eyebrow::before{width:28px;height:3px}
-.doc-hero h1{font-size:clamp(2.4rem,4.5vw,4rem);letter-spacing:-.055em;line-height:1.08;margin-bottom:18px}.doc-hero p{font-size:1rem;max-width:620px;color:#5e7168;line-height:1.75;margin-bottom:30px}
+.doc-hero h1{font-size:clamp(2.4rem,4.5vw,4rem);letter-spacing:-.055em;line-height:1.08;margin-bottom:18px}.doc-hero p{font-size:1rem;max-width:720px;color:#5e7168;line-height:1.75;margin-bottom:30px}
 .hero-stats{gap:0;align-items:center}.stat-item{text-align:left;padding:0 28px;border-left:1px solid #dce8e1}.stat-item:first-child{padding-left:0;border-left:0}.stat-num{font-size:1.65rem;line-height:1.2}.stat-label{font-size:9px;letter-spacing:.12em;margin-top:5px}
 .toc-strip{background:rgba(255,255,255,.96);border-bottom:1px solid #e8eeea;box-shadow:0 4px 14px rgba(20,50,35,.025)}.toc-inner{gap:5px;padding:10px 28px}.toc-pill{font-size:12px;padding:8px 13px;border-radius:9px;color:#607168}.toc-pill.active{background:#e9f5ef;color:#087f5b;box-shadow:none;border:1px solid #d6eadf}
-.sections{padding:44px clamp(24px,4vw,60px) 80px;max-width:1120px}.feat-section{margin-bottom:58px}.feat-header{gap:15px;margin-bottom:20px;align-items:center}
+.sections{padding:36px 28px 72px;max-width:none;width:100%}.feat-section{margin-bottom:48px}.feat-header{gap:15px;margin-bottom:20px;align-items:center}
 .feat-icon-wrap{width:46px;height:46px;border-radius:13px;font-size:20px;background:#edf6f1!important;border-color:#d8eae0!important}.feat-title{font-size:1.55rem;letter-spacing:-.045em;margin-bottom:6px}.feat-desc{font-size:.88rem;color:#6b7b73;margin-bottom:9px}
 .badge{background:#f0f7f3;border-color:#dcece3;color:#16805e;font-size:10px;padding:4px 9px}.open-btn{height:35px;border-radius:10px;background:#fff;border-color:#dce8e1;color:#087f5b}.open-btn:hover{background:#087f5b}
 .browser-frame,.tabs-wrap,.api-group{border-radius:16px;border-color:#e1e9e4;box-shadow:0 8px 26px rgba(25,55,40,.065)}.browser-chrome{background:#f5f8f6;border-color:#e5ece8;padding:10px 14px}.url-bar{background:#fff;border-color:#e5ece8}.fullscreen-btn{background:#fff;border-color:#e2eae5;color:#53665d}
@@ -935,7 +941,6 @@ body{background:var(--bg);letter-spacing:-.012em}
   <div class="topbar-right">
     <button id="themeBtn" class="topbar-btn" title="Toggle theme">🌙 Theme</button>
     <button id="kbdBtn"   class="topbar-btn" title="Keyboard shortcuts">⌨ Shortcuts</button>
-    <a href="http://localhost:3000/dashboard.html" target="_blank" class="topbar-btn primary">Open App ↗</a>
   </div>
 </header>
 
@@ -947,13 +952,9 @@ body{background:var(--bg);letter-spacing:-.012em}
     <div class="sidebar-section-label">Pages & Features</div>
     <nav class="nav">
 
-    <a class="nav-link" href="#login" data-section="login">
-      🔐 Sign In
-      <span>Authentication</span>
-    </a>
-    <a class="nav-link" href="#signup" data-section="signup">
-      📝 Sign Up
-      <span>Authentication</span>
+    <a class="nav-link" href="#getting-started" data-section="getting-started">
+      🚀 Getting Started
+      <span>Quick Start</span>
     </a>
     <a class="nav-link" href="#dashboard" data-section="dashboard">
       📊 Dashboard
@@ -979,11 +980,19 @@ body{background:var(--bg);letter-spacing:-.012em}
       🔌 API Reference
       <span>REST Endpoints</span>
     </a>
+    <a class="nav-link" href="#login" data-section="login">
+      🔐 Sign In
+      <span>Authentication</span>
+    </a>
+    <a class="nav-link" href="#signup" data-section="signup">
+      📝 Sign Up
+      <span>Authentication</span>
+    </a>
     </nav>
     <div class="sidebar-progress">
       <div class="sp-label">Reading Progress</div>
       <div class="sp-track"><div class="sp-fill" id="spFill"></div></div>
-      <div class="sp-count" id="spCount">0 / 7 viewed</div>
+      <div class="sp-count" id="spCount">0 / 9 viewed</div>
     </div>
   </aside>
 
@@ -994,10 +1003,10 @@ body{background:var(--bg);letter-spacing:-.012em}
     <section class="doc-hero">
       <div class="hero-eyebrow">Interactive Documentation</div>
       <h1><span class="zing">zing</span>Techie</h1>
-      <p>An AI-powered browser automation and chat workspace — manage sessions, run Playwright tests, and prompt LLMs from one unified interface.</p>
+      <p>An AI-powered chat workspace and automation hub — compare multiple LLMs side-by-side, manage sessions, run Playwright tests, and integrate AI into your workflows via a local REST API (including GitHub Copilot token support).</p>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num">7</span>
+          <span class="stat-num">9</span>
           <span class="stat-label">Pages</span>
         </div>
         <div class="stat-item">
@@ -1015,19 +1024,89 @@ body{background:var(--bg);letter-spacing:-.012em}
       </div>
     </section>
 
-    <!-- TOC STRIP -->
-    <nav class="toc-strip" aria-label="Quick navigation">
-      <div class="toc-inner">
-<a class="toc-pill" href="#login" data-section="login">🔐 Sign In</a><a class="toc-pill" href="#signup" data-section="signup">📝 Sign Up</a><a class="toc-pill" href="#dashboard" data-section="dashboard">📊 Dashboard</a><a class="toc-pill" href="#chat" data-section="chat">💬 Chat Workspace</a><a class="toc-pill" href="#sessions" data-section="sessions">🖥️ Sessions</a><a class="toc-pill" href="#settings" data-section="settings">⚙️ Settings</a><a class="toc-pill" href="#audit" data-section="audit">🔍 Audit & History</a><a class="toc-pill toc-pill-api" href="#api" data-section="api">🔌 API Reference</a>
-      </div>
-    </nav>
-
     <!-- SEARCH STATUS -->
     <div class="search-bar" id="searchBar"></div>
 
     <!-- SECTIONS -->
     <main class="sections" id="mainContent">
       <div class="no-results" id="noResults">🔍 No results found. Try different keywords.</div>
+
+  <section class="feat-section" id="getting-started"
+    data-search="Getting Started Quick Start setup install run first chat API Copilot token device flow authentication">
+
+    <div class="feat-header">
+      <div class="feat-icon-wrap" style="background:#2fa78722;border-color:#2fa78744;">
+        <span class="feat-icon-glyph">🚀</span>
+      </div>
+      <div class="feat-meta">
+        <div class="eyebrow" style="color:#2fa787">Quick Start</div>
+        <h2 class="feat-title">Getting Started</h2>
+        <p class="feat-desc">Get from zero to your first AI response in a few minutes. zingTechie runs locally, owns authentication, and exposes a REST API your automation can call.</p>
+        <div class="badge-row"><span class="badge">Local-first</span><span class="badge">REST API</span><span class="badge">Multi-model</span></div>
+      </div>
+    </div>
+
+    <div class="tabs-wrap">
+      <div class="tabs-nav" role="tablist">
+        <button class="tab-btn active" data-tab="how-started" role="tab" aria-selected="true">
+          <span class="tab-icon">📖</span> How to start
+        </button>
+        <button class="tab-btn" data-tab="key-started" role="tab" aria-selected="false">
+          <span class="tab-icon">✦</span> What you get
+        </button>
+      </div>
+      <div class="tab-panel active" id="how-started">
+        <ol class="steps-list">
+          <li class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <strong>Launch the app</strong>
+              <p>Start zingTechie locally and open the dashboard (default: <code>http://localhost:3000</code>).</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <strong>Sign up / Sign in</strong>
+              <p>Create an account or log in. Session is JWT-based and stored for persistence.</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <strong>Connect GitHub Copilot</strong>
+              <p>In Settings (or via the Token &amp; Device Login API), start the GitHub device-login flow to authenticate and obtain a Copilot token. Tokens stay server-side — your automation never holds them.</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <strong>Send your first prompt</strong>
+              <p>Go to Chat Workspace, pick a model, and send a message. Responses stream in real time. Use Compare Models to run the same prompt against multiple models.</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <strong>Call the API from your tools</strong>
+              <p>Point Selenium, Playwright, or any HTTP client at the local REST endpoints (e.g. <code>POST /api/chat</code>). Auth and token management stay inside zingTechie.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="tab-panel" id="key-started">
+        <ul class="feats-list">
+          <li class="feat-item"><span class="feat-dot"></span>Local AI workspace with multi-model chat and side-by-side comparison</li>
+          <li class="feat-item"><span class="feat-dot"></span>GitHub device-flow support for Copilot token management</li>
+          <li class="feat-item"><span class="feat-dot"></span>50+ REST endpoints for chat, sessions, models, stats, and audit</li>
+          <li class="feat-item"><span class="feat-dot"></span>Persistent sessions with export (Markdown / JSON) and email</li>
+          <li class="feat-item"><span class="feat-dot"></span>Designed so test automation and scripts never hold secrets</li>
+          <li class="feat-item"><span class="feat-dot"></span>Dashboard with live token health, model cache, and usage</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <hr class="section-sep">
 
   <section class="feat-section" id="login"
     data-search="Sign In Authentication Secure entry point to your zingTechie workspace. Authenticate with your email and password to access the full platform. JWT-based session authentication Token stored in localStorage for persistence Auto-redirect if already authenticated Direct link to create a new account Responsive layout for all screen sizes">
@@ -1285,7 +1364,7 @@ body{background:var(--bg);letter-spacing:-.012em}
       <hr class="section-sep">
 
   <section class="feat-section" id="chat"
-    data-search="Chat Workspace AI Assistant Write prompts, compare model outputs side-by-side, and save conversations as reusable sessions. Supports streaming replies. Multi-model support (OpenAI, local, custom endpoints) Markdown and code-block rendering Side-by-side model comparison Full session history with timestamps Session save, rename, and delete Token usage tracking per conversation">
+    data-search="Chat Workspace AI Assistant Write prompts, compare model outputs side-by-side, and save conversations as reusable sessions. Supports streaming replies. Multi-model support (GitHub Copilot models, local, custom endpoints) Markdown and code-block rendering Side-by-side model comparison Full session history with timestamps Session save, rename, and delete Token usage tracking per conversation">
 
     <div class="feat-header">
       <div class="feat-icon-wrap" style="background:#5bc0a422;border-color:#5bc0a444;">
@@ -1366,7 +1445,7 @@ body{background:var(--bg);letter-spacing:-.012em}
       </div>
       <div class="tab-panel" id="key-chat">
         <ul class="feats-list">
-        <li class="feat-item"><span class="feat-dot"></span>Multi-model support (OpenAI, local, custom endpoints)</li>
+        <li class="feat-item"><span class="feat-dot"></span>Multi-model support (GitHub Copilot models, local, custom endpoints)</li>
         <li class="feat-item"><span class="feat-dot"></span>Markdown and code-block rendering</li>
         <li class="feat-item"><span class="feat-dot"></span>Side-by-side model comparison</li>
         <li class="feat-item"><span class="feat-dot"></span>Full session history with timestamps</li>
@@ -1464,7 +1543,7 @@ body{background:var(--bg);letter-spacing:-.012em}
       <hr class="section-sep">
 
   <section class="feat-section" id="settings"
-    data-search="Settings Configuration Configure API keys, default models, SMTP email delivery, theme preferences, and application behaviour from one central panel. Secure API key storage (server-side, never sent to client) Multiple model-provider support Per-user settings persistence SMTP configuration for email delivery Dark / light theme toggle Export / import configuration">
+    data-search="Settings Configuration Configure Copilot token, default models, SMTP email delivery, theme preferences, and application behaviour from one central panel. Secure Copilot token storage (server-side, never sent to client) GitHub device-flow login Per-user settings persistence SMTP configuration for email delivery Dark / light theme toggle Export / import configuration">
 
     <div class="feat-header">
       <div class="feat-icon-wrap" style="background:#1f8f7022;border-color:#1f8f7044;">
@@ -1510,8 +1589,8 @@ body{background:var(--bg);letter-spacing:-.012em}
         <li class="step-item">
           <div class="step-num">1</div>
           <div class="step-body">
-            <strong>API Keys</strong>
-            <p>Enter your OpenAI or other provider keys in the dedicated secure fields.</p>
+            <strong>API Keys / Copilot token</strong>
+            <p>Connect GitHub Copilot via the device-login flow, or save your Copilot token in the secure fields. Tokens are stored server-side only.</p>
           </div>
         </li>
         <li class="step-item">
@@ -1538,8 +1617,8 @@ body{background:var(--bg);letter-spacing:-.012em}
       </div>
       <div class="tab-panel" id="key-settings">
         <ul class="feats-list">
-        <li class="feat-item"><span class="feat-dot"></span>Secure API key storage (server-side, never sent to client)</li>
-        <li class="feat-item"><span class="feat-dot"></span>Multiple model-provider support</li>
+        <li class="feat-item"><span class="feat-dot"></span>Secure Copilot token storage (server-side, never sent to client)</li>
+        <li class="feat-item"><span class="feat-dot"></span>GitHub device-flow login + model selection</li>
         <li class="feat-item"><span class="feat-dot"></span>Per-user settings persistence</li>
         <li class="feat-item"><span class="feat-dot"></span>SMTP configuration for email delivery</li>
         <li class="feat-item"><span class="feat-dot"></span>Dark / light theme toggle</li>
@@ -1779,6 +1858,9 @@ body{background:var(--bg);letter-spacing:-.012em}
           <span class="api-group-icon">🔑</span>
           <h3 class="api-group-title" style="color:#1f8f70">Token & Device Login</h3>
           <span class="api-group-count">4 endpoints</span>
+        </div>
+        <div style="padding:12px 18px;background:var(--panel-strong);border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.55;">
+          <strong style="color:var(--text);">Note:</strong> These endpoints support GitHub’s official device-flow pattern for obtaining a Copilot-related token. This is an <em>unofficial</em> integration. Review GitHub’s terms of service before use in production or shared environments. Prefer storing tokens server-side only; never commit them.
         </div>
         <div class="api-table-wrap">
           <table class="api-table">
@@ -2143,7 +2225,7 @@ body{background:var(--bg);letter-spacing:-.012em}
 (function () {
   'use strict';
 
-  const SECTION_IDS = ["login","signup","dashboard","chat","sessions","settings","audit","api"];
+  const SECTION_IDS = ["getting-started","dashboard","chat","sessions","settings","audit","api","login","signup"];
   const viewed = new Set();
 
   /* ── Theme ────────────────────────────────────────────────────── */
