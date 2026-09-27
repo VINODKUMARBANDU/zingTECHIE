@@ -50,14 +50,16 @@ Rather than relying on a single AI model or isolated tool, Zingtechie aims to pr
 
 *Illustrative architecture. Adapt it to the services actually implemented.*
 
-## 🛠️ Technology Stack
+🌐 Live Documentation
 
-Update this section to reflect the technologies used in your project.
+📖 [[View zingTECHIE Documentation]](https://vinodkumarbandu.github.io/zingTECHIE/)
+
+## 🛠️ Technology Stack
 
 - **Frontend:** HTML5, CSS3, JavaScript
 - **Backend:** NodeJS, Java, RestAPI
-- **AI Integration:** LLM provider APIs
-
+- **AI Integration:** Custom Zingtechie APIs for LLM connectivity, model integration, and fallback support
+  
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -114,11 +116,5 @@ These are potential enhancements, not necessarily implemented features.
 ## 🤝 Contributing
 
 Contributions, ideas, and suggestions are welcome. Please open an issue to discuss significant changes before submitting a pull request.
-
-## 📄 License
-
-Specify the license applicable to this project.
-
----
 
 **Zingtechie — One workspace. Multiple AI possibilities.**
