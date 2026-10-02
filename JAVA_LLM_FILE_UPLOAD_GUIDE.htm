@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Java Guide - Connect to LLM, Send Prompt, Upload Screenshot</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --ink: #13233f;
+      --muted: #4f6388;
+      --line: #d5e0f0;
+      --brand: #0f5cc0;
+      --brand-2: #1f7ce2;
+      --ok-bg: #e8f6ee;
+      --ok-ink: #145d33;
+      --note-bg: #eef4ff;
+      --note-ink: #1f4d96;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 12% 0%, #e9f1ff 0%, var(--bg) 40%, #f8fbff 100%);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 26px 18px 52px;
+    }
+
+    .hero {
+      border-radius: 16px;
+      padding: 22px;
+      color: #fff;
+      background: linear-gradient(145deg, #0d3574, var(--brand) 56%, var(--brand-2));
+      box-shadow: 0 14px 34px rgba(10, 42, 96, 0.28);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0;
+      opacity: 0.96;
+      font-size: 15px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 22px rgba(19, 35, 63, 0.08);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: #163e80;
+      font-size: 22px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: #1a3a6e;
+      font-size: 17px;
+    }
+
+    ul, ol { margin: 8px 0; padding-left: 20px; }
+
+    .callout {
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0;
+      font-size: 14px;
+      border: 1px solid transparent;
+    }
+
+    .callout.ok {
+      background: var(--ok-bg);
+      color: var(--ok-ink);
+      border-color: #c5e7d1;
+    }
+
+    .callout.note {
+      background: var(--note-bg);
+      color: var(--note-ink);
+      border-color: #c7d8fb;
+    }
+
+    pre {
+      margin: 8px 0 10px;
+      background: #10213e;
+      color: #dbe7ff;
+      border-radius: 10px;
+      padding: 12px;
+      overflow-x: auto;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 10px;
+    }
+
+    .kbd {
+      display: inline-block;
+      border: 1px solid #c9d7ef;
+      background: #f1f6ff;
+      border-radius: 6px;
+      padding: 1px 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #244b8d;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    th {
+      background: #edf4ff;
+      color: #193b72;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Java Integration Guide</h1>
+      <p>How to connect Java code to your LLM backend, send prompt input, and send file or screenshot input (attachments).</p>
+    </section>
+
+    <section class="card">
+      <h2>1. API Endpoints Used</h2>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>POST</td><td>/api/chat/attachments</td><td>Upload files/screenshots and extract text/snippets</td></tr>
+          <tr><td>POST</td><td>/api/chat-with-fallback</td><td>Send prompt to selected model with fallback support</td></tr>
+        </tbody>
+      </table>
+      <div class="callout.note">Base URL example: http://localhost:3000</div>
+      <div class="callout.ok">Important: Token must already be saved in your app settings, or chat returns 400 (No token saved).</div>
+    </section>
+
+    <section class="card">
+      <h2>2. Java Flow (Prompt + Screenshot/File)</h2>
+      <ol>
+        <li>Upload screenshot/file using multipart form field name files.</li>
+        <li>Read promptSnippet from attachment response.</li>
+        <li>Append attachment context to your user prompt.</li>
+        <li>Call chat-with-fallback with model and messages.</li>
+      </ol>
+      <pre>Step A: POST /api/chat/attachments (multipart)
+Step B: Collect attachments[].promptSnippet
+Step C: Build final prompt with attachment context
+Step D: POST /api/chat-with-fallback (json)</pre>
+    </section>
+
+    <section class="card">
+      <h2>3. Maven Dependencies (Java 17)</h2>
+      <pre>&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;
+    &lt;artifactId&gt;okhttp&lt;/artifactId&gt;
+    &lt;version&gt;4.12.0&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+    &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+    &lt;version&gt;2.17.2&lt;/version&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;</pre>
+    </section>
+
+    <section class="card">
+      <h2>4. Full Java Example</h2>
+      <pre>package com.wheels.automation.fleetanalytics;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ChatWithAttachmentExample {
+
+    private static final String BASE_URL = "http://localhost:3000";
+    private static final String MODEL = "gpt-4o-mini";
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private static final MediaType OCTET = MediaType.parse("application/octet-stream");
+
+    public static void main(String[] args) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(Duration.ofSeconds(20))
+                .readTimeout(Duration.ofSeconds(120))
+                .writeTimeout(Duration.ofSeconds(120))
+                .build();
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String prompt = "Generate test cases for login flow";
+        File attachment = new File("C:/temp/requirements.png");
+
+        if (!attachment.exists()) {
+            throw new RuntimeException("Attachment file not found: " + attachment.getAbsolutePath());
+        }
+
+        List&lt;String&gt; snippets = uploadAttachments(client, mapper, attachment);
+        String finalPrompt = buildPrompt(prompt, snippets);
+        String assistantAnswer = sendChat(client, mapper, finalPrompt);
+
+        System.out.println("Assistant response:");
+        System.out.println(assistantAnswer);
+    }
+
+    private static List&lt;String&gt; uploadAttachments(OkHttpClient client, ObjectMapper mapper, File file) {
+        try {
+            RequestBody fileBody = RequestBody.create(file, OCTET);
+
+            MultipartBody multipartBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("files", file.getName(), fileBody)
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url(BASE_URL + "/api/chat/attachments")
+                    .post(multipartBody)
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                String responseText = response.body() != null ? response.body().string() : "";
+
+                if (!response.isSuccessful()) {
+                    throw new RuntimeException("Attachment upload failed. HTTP " + response.code() + " - " + responseText);
+                }
+
+                JsonNode root = parseJsonOrThrow(mapper, responseText, "attachments upload");
+                JsonNode attachments = root.path("attachments");
+
+                List&lt;String&gt; snippets = new ArrayList&lt;&gt;();
+                if (attachments.isArray()) {
+                    for (JsonNode item : attachments) {
+                        String snippet = item.path("promptSnippet").asText("");
+                        if (!snippet.isBlank()) {
+                            snippets.add(snippet);
+                        }
+                    }
+                }
+
+                return snippets;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("I/O error while uploading attachments", e);
+        }
+    }
+
+    private static String sendChat(OkHttpClient client, ObjectMapper mapper, String userPrompt) {
+        try {
+            String escapedPrompt = toJsonStringOrThrow(mapper, userPrompt, "chat payload");
+
+            String payload =
+                    "{"
+                            + "\"model\":\"" + MODEL + "\","
+                            + "\"messages\":[{\"role\":\"user\",\"content\":" + escapedPrompt + "}]"
+                            + "}";
+
+            RequestBody requestBody = RequestBody.create(payload, JSON);
+
+            Request request = new Request.Builder()
+                    .url(BASE_URL + "/api/chat-with-fallback")
+                    .post(requestBody)
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                String responseText = response.body() != null ? response.body().string() : "";
+
+                if (!response.isSuccessful()) {
+                    throw new RuntimeException("Chat request failed. HTTP " + response.code() + " - " + responseText);
+                }
+
+                JsonNode root = parseJsonOrThrow(mapper, responseText, "chat request");
+                String content = root.path("data")
+                        .path("choices")
+                        .path(0)
+                        .path("message")
+                        .path("content")
+                        .asText("");
+
+                if (content.isBlank()) {
+                    return "No assistant content returned. Raw response: " + responseText;
+                }
+
+                return content;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("I/O error while sending chat request", e);
+        }
+    }
+
+    private static JsonNode parseJsonOrThrow(ObjectMapper mapper, String responseText, String context) {
+        try {
+            return mapper.readTree(responseText);
+        } catch (IOException e) {
+            throw new RuntimeException(
+                    "Invalid JSON returned during " + context + ". Raw response: " + responseText,
+                    e
+            );
+        }
+    }
+
+    private static String toJsonStringOrThrow(ObjectMapper mapper, Object value, String context) {
+        try {
+            return mapper.writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to serialize JSON during " + context, e);
+        }
+    }
+
+    private static String buildPrompt(String prompt, List&lt;String&gt; snippets) {
+        if (snippets == null || snippets.isEmpty()) {
+            return prompt;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(prompt).append("\n\n");
+        sb.append("[Attachment Context]\n\n");
+
+        for (String snippet : snippets) {
+            sb.append(snippet).append("\n\n");
+        }
+
+        sb.append("[End Attachment Context]");
+        return sb.toString();
+    }
+}</pre>
+    </section>
+
+    <section class="card">
+      <h2>5. Prompt Input and File Input Mapping</h2>
+      <div class="grid">
+        <div>
+          <h3>Prompt Input</h3>
+          <ul>
+            <li>Java variable: userPrompt</li>
+            <li>JSON: messages[0].content</li>
+            <li>Endpoint: /api/chat-with-fallback</li>
+          </ul>
+        </div>
+        <div>
+          <h3>File or Screenshot Input</h3>
+          <ul>
+            <li>Java File: new File("C:/path/image.png")</li>
+            <li>Multipart field: files</li>
+            <li>Endpoint: /api/chat/attachments</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>6. Run Commands</h2>
+      <pre>mvn clean compile
+mvn exec:java -Dexec.mainClass=com.wheels.automation.fleetanalytics.ChatWithAttachmentExample</pre>
+      <div class="callout.note">If you get 400 No token saved, first save token in the app Settings UI.</div>
+    </section>
+  </div>
+</body>
+</html>
