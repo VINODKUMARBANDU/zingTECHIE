@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZingTechie - Core UI Comparison</title>
+  <style>
+    :root {
+      --bg: #f4f7fc;
+      --panel: #ffffff;
+      --ink: #12233f;
+      --muted: #4e6286;
+      --line: #d5e0f2;
+      --brand-a: #0f4fb6;
+      --brand-b: #2d83ea;
+      --good-bg: #e8f7ee;
+      --good-ink: #165f35;
+      --note-bg: #edf3ff;
+      --note-ink: #1f4b96;
+      --shadow: 0 10px 26px rgba(18, 35, 63, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 10% 0%, #eaf1ff 0%, var(--bg) 34%, #f8fbff 100%);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 26px 18px 56px;
+    }
+
+    .hero {
+      border-radius: 16px;
+      padding: 22px;
+      color: #fff;
+      background: linear-gradient(140deg, #0d2f68, var(--brand-a) 52%, var(--brand-b));
+      box-shadow: 0 16px 38px rgba(10, 39, 90, 0.28);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 940px;
+      opacity: 0.95;
+      font-size: 15px;
+    }
+
+    .pill {
+      display: inline-block;
+      margin-top: 12px;
+      margin-right: 8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: #143b7a;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: #1a3561;
+    }
+
+    .callout {
+      border-radius: 12px;
+      padding: 11px 12px;
+      margin: 8px 0 12px;
+      border: 1px solid transparent;
+      font-size: 14px;
+    }
+
+    .callout.note {
+      background: var(--note-bg);
+      color: var(--note-ink);
+      border-color: #c7d9ff;
+    }
+
+    .callout.good {
+      background: var(--good-bg);
+      color: var(--good-ink);
+      border-color: #c5e9d1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    th {
+      background: #edf4ff;
+      color: #163a72;
+      font-weight: 800;
+    }
+
+    .yes { color: #0f6739; font-weight: 700; }
+    .partial { color: #845707; font-weight: 700; }
+    .no { color: #991b1f; font-weight: 700; }
+
+    ul {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    .footer {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>ZingTechie - Core Feature Comparison</h1>
+      <p>
+        This version is focused on your core workspace experience only.
+      </p>
+      <span class="pill">Scope: Dashboard + Chat + Sessions + Settings + Audit</span>
+      <span class="pill">Baseline: GitHub Copilot Chat + VS Code Copilot Chat</span>
+    </section>
+
+    <section class="card">
+      <h2>Core Comparison Matrix</h2>
+      <div class="callout note">
+        This matrix highlights workflow scope and UI depth for core assistant operations.
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Capability Area</th>
+            <th>Your App: ZingTechie</th>
+            <th>GitHub Copilot Chat (general)</th>
+            <th>VS Code GitHub Copilot Chat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dedicated multi-page workspace</td>
+            <td class="yes">Yes - clear page-level separation for chat, sessions, settings, audit, dashboard</td>
+            <td class="partial">Often chat-first single workspace style</td>
+            <td class="partial">Editor-embedded panels rather than standalone web workspace</td>
+          </tr>
+          <tr>
+            <td>Live KPI dashboard</td>
+            <td class="yes">Yes - token, model cache, prompts sent, sessions created, usage summaries</td>
+            <td class="no">No equivalent KPI dashboard flow</td>
+            <td class="partial">Telemetry and indicators exist, but not full dashboard center</td>
+          </tr>
+          <tr>
+            <td>Prompt + multi-model compare</td>
+            <td class="yes">Yes - side-by-side compare flow in Chat Workspace</td>
+            <td class="partial">Model switching available in some contexts, compare flow is limited</td>
+            <td class="partial">Model selection available; side-by-side compare is not a primary built-in pattern</td>
+          </tr>
+          <tr>
+            <td>Session lifecycle management</td>
+            <td class="yes">Yes - save, list, search, sort, update, rename, delete</td>
+            <td class="partial">Conversation history exists, but file-style lifecycle controls are limited</td>
+            <td class="partial">History available, not typically exposed as full session file operations</td>
+          </tr>
+          <tr>
+            <td>Transcript export and email sharing</td>
+            <td class="yes">Yes - export in multiple formats and email via SMTP</td>
+            <td class="partial">Sharing/export options vary by product surface</td>
+            <td class="partial">Share/copy patterns exist, but full export+email workflow is not the standard baseline</td>
+          </tr>
+          <tr>
+            <td>Governance views (audit + email history)</td>
+            <td class="yes">Yes - dedicated UI for review and cleanup</td>
+            <td class="partial">Governance data may exist at platform/admin level</td>
+            <td class="partial">Logs and traces exist through tooling, but not this dedicated governance page model</td>
+          </tr>
+          <tr>
+            <td>Prompt productivity helpers</td>
+            <td class="yes">Yes - templates, draft controls, raw-to-prompt convert, prompt history reuse, attachments support</td>
+            <td class="partial">Prompting is strong, but same explicit helper set may vary</td>
+            <td class="partial">Strong coding context help, but helper workflow differs from your dedicated chat operations page</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout.good">
+        Core UI positioning: your app provides a stronger operations-focused chat workspace with governance, session lifecycle, and export-ready collaboration features.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>All Core Features in Your App</h2>
+
+      <h3>1. Dashboard</h3>
+      <ul>
+        <li>Token/model/session/prompt KPIs and health signals.</li>
+        <li>Prompt history search plus bulk cleanup actions.</li>
+        <li>Quick navigation for daily operations.</li>
+      </ul>
+
+      <h3>2. Chat Workspace</h3>
+      <ul>
+        <li>Model selection, system prompt, streaming, fallback-aware request flow.</li>
+        <li>Multi-model compare with side-by-side output.</li>
+        <li>Template and prompt history reuse workflows.</li>
+        <li>Draft controls: save, load, clear.</li>
+        <li>Raw notes to prompt conversion helper.</li>
+        <li>Attachment upload with extracted text context and test-case prompt generation.</li>
+      </ul>
+
+      <h3>3. Sessions</h3>
+      <ul>
+        <li>Create and manage reusable conversation sessions.</li>
+        <li>Search, sort, load modes, rename, update, delete.</li>
+        <li>Transcript export: TXT, JSON, Markdown, HTML, PDF.</li>
+        <li>Email transcript via SMTP configuration.</li>
+      </ul>
+
+      <h3>4. Settings</h3>
+      <ul>
+        <li>Token save/clear and device login polling flow.</li>
+        <li>Model refresh and cache diagnostics.</li>
+        <li>Fallback toggle, default sort, theme, system prompt defaults.</li>
+        <li>SMTP and public URL settings.</li>
+      </ul>
+
+      <h3>5. Audit and History</h3>
+      <ul>
+        <li>Audit log list/refresh/delete and clear-all controls.</li>
+        <li>Email history list/refresh/delete and clear-all controls.</li>
+        <li>Governance and troubleshooting visibility for workspace operations.</li>
+      </ul>
+    </section>
+
+  </div>
+</body>
+</html>
