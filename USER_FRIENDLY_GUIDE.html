@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZingTechie UI - Complete User Guide</title>
+  <style>
+    :root {
+      --bg: #f3f1ea;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #526175;
+      --border: #d9e1ea;
+      --accent: #0f766e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 10% 0%, #e9efe8 0%, #f3f1ea 46%, #efe8da 100%);
+      color: var(--text);
+      font-family: Segoe UI, Arial, sans-serif;
+      line-height: 1.55;
+      padding: 28px 18px;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 12px 34px rgba(16, 24, 40, 0.08);
+      padding: 24px;
+    }
+    h1, h2, h3 { margin: 0.9em 0 0.45em; line-height: 1.2; }
+    h1 { font-size: 34px; color: #0f172a; }
+    h2 { font-size: 25px; color: #0b3b4b; border-bottom: 1px solid #e7edf2; padding-bottom: 8px; }
+    h3 { font-size: 20px; color: #1f2937; }
+    p { margin: 0.45em 0; }
+    ul, ol { margin: 0.4em 0 0.85em 1.2em; }
+    li { margin: 0.24em 0; }
+    hr { border: 0; border-top: 1px dashed #cfd8e3; margin: 18px 0; }
+    code {
+      background: #f2f7fb;
+      border: 1px solid #d8e4ef;
+      border-radius: 6px;
+      padding: 1px 6px;
+      font-family: Consolas, monospace;
+      font-size: 0.92em;
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .wrap { box-shadow: none; border: 0; border-radius: 0; max-width: none; padding: 12mm; }
+      h2 { page-break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>ZingTechie UI - Complete User Guide</h1>
+
+    <h2>Purpose</h2>
+    <p>This guide explains how to use the app end-to-end in a simple way.</p>
+    <p>It is written for day-to-day users, not developers.</p>
+
+    <p>Included screens:</p>
+    <ul>
+      <li>Dashboard</li>
+      <li>Chat Workspace</li>
+      <li>Sessions</li>
+      <li>Settings</li>
+      <li>Audit &amp; History</li>
+    </ul>
+
+    <hr />
+    <h2>1. Quick Start</h2>
+    <h3>1.1 Open the app</h3>
+    <ol>
+      <li>Open the app URL provided by your admin.</li>
+      <li>If you are running locally, open:</li>
+    </ol>
+    <ul>
+      <li>http://localhost:3000/dashboard.html</li>
+    </ul>
+
+    <h3>1.2 Understand navigation</h3>
+    <p>Use the left sidebar to move between screens:</p>
+    <ul>
+      <li>Dashboard</li>
+      <li>Chat Workspace</li>
+      <li>Sessions</li>
+      <li>Settings</li>
+      <li>Audit &amp; History</li>
+    </ul>
+
+    <hr />
+    <h2>2. Dashboard</h2>
+    <h3>What this screen gives you</h3>
+    <ul>
+      <li>Token status and health</li>
+      <li>Model cache count</li>
+      <li>Prompt and session totals</li>
+      <li>Current session and last used model</li>
+      <li>Recent model usage list</li>
+      <li>Recent prompt history with search and bulk delete</li>
+    </ul>
+
+    <h3>How to use Dashboard</h3>
+    <ol>
+      <li>Click Refresh at top-right to reload data.</li>
+      <li>Review KPI tiles:</li>
+    </ol>
+    <ul>
+      <li>Token Status</li>
+      <li>Cached Models</li>
+      <li>Prompts Sent</li>
+      <li>Sessions Created</li>
+    </ul>
+    <ol start="3">
+      <li>Use Search prompts to find recent prompt text.</li>
+      <li>Use Select All and Delete Selected in Recent prompts to clean history.</li>
+      <li>Use Quick Actions to jump to Chat, Studio, or Audit.</li>
+    </ol>
+
+    <h3>Tips</h3>
+    <ul>
+      <li>If prompt list is long, search first, then bulk delete only what you need.</li>
+      <li>If token status is invalid, go to Settings and update token.</li>
+    </ul>
+
+    <hr />
+    <h2>3. Chat Workspace</h2>
+    <h3>What this screen gives you</h3>
+    <ul>
+      <li>Main prompt composer</li>
+      <li>Model selection and comparison</li>
+      <li>Draft save/load/clear</li>
+      <li>Raw text to prompt conversion</li>
+      <li>File attachments and generated test-case prompt support</li>
+      <li>Session save and reuse</li>
+      <li>Conversation view and response inspector</li>
+    </ul>
+
+    <h3>Core flow: send a prompt</h3>
+    <ol>
+      <li>Select a model from Model.</li>
+      <li>Optional: enter System prompt.</li>
+      <li>Enter your Prompt.</li>
+      <li>Click Send Prompt.</li>
+      <li>Review response in Conversation and Response inspector.</li>
+    </ol>
+
+    <h3>Compare multiple models</h3>
+    <ol>
+      <li>In Compare models, check at least two models.</li>
+      <li>Click Compare Models.</li>
+      <li>Review side-by-side results in Multiple model compare.</li>
+    </ol>
+
+    <h3>Save and reuse sessions</h3>
+    <ol>
+      <li>After a useful chat, click Save Session.</li>
+      <li>Later, use Reuse saved session dropdown.</li>
+      <li>Choose Load mode:</li>
+    </ol>
+    <ul>
+      <li>Prompt only</li>
+      <li>Full conversation</li>
+    </ul>
+    <ol start="4">
+      <li>Click Load Session.</li>
+    </ol>
+
+    <h3>Work with drafts</h3>
+    <ol>
+      <li>Type your work-in-progress text.</li>
+      <li>Click Save Draft.</li>
+      <li>Use Load Draft later.</li>
+      <li>Use Clear Draft when you want a fresh start.</li>
+    </ol>
+
+    <h3>Convert rough notes to prompt format</h3>
+    <ol>
+      <li>Paste unstructured notes into Raw text to convert.</li>
+      <li>Choose Conversion mode.</li>
+      <li>Click Convert Text.</li>
+      <li>Review generated prompt content and refine.</li>
+    </ol>
+
+    <h3>File attachments</h3>
+    <ol>
+      <li>Click Attach files and select one or more files.</li>
+      <li>Click Upload Attachments.</li>
+      <li>Click Generate Test Cases Prompt to auto-build a testing prompt.</li>
+      <li>Optional exports:</li>
+    </ol>
+    <ul>
+      <li>Download Test Cases</li>
+      <li>Download Checklist</li>
+    </ul>
+    <ol start="5">
+      <li>Use Clear Attachments to reset.</li>
+    </ol>
+
+    <h3>Streaming mode</h3>
+    <ul>
+      <li>Enable Streaming mode to see response text progressively.</li>
+    </ul>
+
+    <hr />
+    <h2>4. Sessions</h2>
+    <h3>What this screen gives you</h3>
+    <ul>
+      <li>Search and sort saved sessions</li>
+      <li>Session message inspection</li>
+      <li>Transcript export in multiple formats</li>
+      <li>Email transcript sharing</li>
+      <li>Rename and delete session files</li>
+    </ul>
+
+    <h3>Find a session</h3>
+    <ol>
+      <li>Enter keyword in Search.</li>
+      <li>Choose Sort method.</li>
+      <li>Click Apply.</li>
+      <li>Click any session card to load details.</li>
+    </ol>
+
+    <h3>Export transcript</h3>
+    <ol>
+      <li>Select a session from Session list.</li>
+      <li>Confirm Selected session file is filled.</li>
+      <li>Enter Export file name.</li>
+      <li>Choose Format: TXT, JSON, Markdown, HTML, or PDF.</li>
+      <li>Click Export Transcript.</li>
+    </ol>
+
+    <h3>Email transcript</h3>
+    <ol>
+      <li>Select session.</li>
+      <li>Enter Recipient email.</li>
+      <li>Click Email Transcript.</li>
+    </ol>
+
+    <h3>Rename or delete session</h3>
+    <ol>
+      <li>Select session.</li>
+      <li>Click Rename File to rename.</li>
+      <li>Click Delete Session to remove.</li>
+    </ol>
+
+    <h3>Helpful empty-state popups</h3>
+    <p>This screen now shows clear popup guidance when:</p>
+    <ul>
+      <li>No session is selected for export/email/rename/delete</li>
+      <li>No sessions match filters</li>
+      <li>No sessions exist on refresh</li>
+      <li>Pagination limit is reached</li>
+    </ul>
+
+    <hr />
+    <h2>5. Settings</h2>
+    <h3>What this screen gives you</h3>
+    <ul>
+      <li>Token save/clear</li>
+      <li>GitHub device login flow</li>
+      <li>Model cache refresh and diagnostics</li>
+      <li>App preferences and optimization controls</li>
+      <li>SMTP and email-link base URL settings</li>
+    </ul>
+
+    <h3>Token setup</h3>
+    <ol>
+      <li>Paste token in Access token.</li>
+      <li>Click Save Token.</li>
+      <li>Use Clear Token to remove it.</li>
+      <li>Check status in Has token and Token valid.</li>
+    </ol>
+
+    <h3>GitHub device login flow</h3>
+    <ol>
+      <li>Click Start Device Login.</li>
+      <li>Copy User code and open Verification URL.</li>
+      <li>Complete authorization in browser.</li>
+      <li>Return and click Poll Device Login.</li>
+    </ol>
+
+    <h3>Refresh and inspect models</h3>
+    <ol>
+      <li>Click Refresh Models.</li>
+      <li>Click Reload Status.</li>
+      <li>Use Filter models by name or ID.</li>
+      <li>Review usage guidance and diagnostics panel.</li>
+    </ol>
+
+    <h3>Save app preferences</h3>
+    <ol>
+      <li>Set fallback, default sort, and theme.</li>
+      <li>Set default system prompt.</li>
+      <li>Configure SMTP host and sender.</li>
+      <li>Set Public app URL for links in email.</li>
+      <li>Tune optimization values if needed.</li>
+      <li>Click Save Settings.</li>
+    </ol>
+
+    <hr />
+    <h2>6. Audit &amp; History</h2>
+    <h3>What this screen gives you</h3>
+    <ul>
+      <li>Audit log entries</li>
+      <li>Email history entries</li>
+      <li>Delete controls for single item and all items</li>
+      <li>Clear user guidance when data is empty</li>
+    </ul>
+
+    <h3>Use audit log panel</h3>
+    <ol>
+      <li>Click Refresh Audit Log to fetch latest records.</li>
+      <li>Click Delete on one row to remove only that row.</li>
+      <li>Click Delete Audit Log to clear all records.</li>
+    </ol>
+
+    <h3>Use email history panel</h3>
+    <ol>
+      <li>Click Refresh Email History.</li>
+      <li>Click Delete on one email row to remove it.</li>
+      <li>Click Delete Email History to clear all.</li>
+    </ol>
+
+    <h3>Empty-state behavior</h3>
+    <p>If there is no data, popup messages explain the action clearly instead of performing a misleading delete flow.</p>
+
+    <hr />
+    <h2>7. Feature-to-Backend Map (Simplified)</h2>
+    <h3>Dashboard data</h3>
+    <ul>
+      <li>Status and token/model state</li>
+      <li>Stats and prompt history</li>
+      <li>Prompt history delete</li>
+    </ul>
+
+    <h3>Chat Workspace</h3>
+    <ul>
+      <li>Model cache and model refresh</li>
+      <li>Draft load/save/clear</li>
+      <li>Prompt template APIs</li>
+      <li>Session creation</li>
+      <li>Chat and fallback chat APIs</li>
+      <li>Attachment upload and parse</li>
+      <li>Prompt conversion</li>
+    </ul>
+
+    <h3>Sessions</h3>
+    <ul>
+      <li>Session list and filtering</li>
+      <li>Session detail, update, rename, delete</li>
+      <li>Transcript save/download/email</li>
+    </ul>
+
+    <h3>Settings</h3>
+    <ul>
+      <li>App settings load/save</li>
+      <li>Token save/clear</li>
+      <li>Device login start/poll</li>
+      <li>Model refresh and diagnostics data</li>
+    </ul>
+
+    <h3>Audit &amp; History</h3>
+    <ul>
+      <li>Audit log list/delete</li>
+      <li>Email history list/delete</li>
+      <li>Client error logging</li>
+    </ul>
+
+    <hr />
+    <h2>8. Ready-to-Use Prompt Template Examples</h2>
+    <p>Use these directly in Chat Workspace.</p>
+
+    <h3>Example A: Summarize code</h3>
+    <p><strong>System prompt:</strong><br />
+      You are a senior engineer. Summarize code behavior in plain language with risks and edge cases.</p>
+    <p><strong>User prompt:</strong><br />
+      Summarize this module, list dependencies, and suggest 3 safe improvements.</p>
+
+    <h3>Example B: Generate unit tests</h3>
+    <p><strong>System prompt:</strong><br />
+      You are a test engineer. Write robust unit test cases with positive, negative, and edge scenarios.</p>
+    <p><strong>User prompt:</strong><br />
+      Generate unit tests for this function. Include boundary values and failure cases.</p>
+
+    <h3>Example C: Explain error</h3>
+    <p><strong>System prompt:</strong><br />
+      You are a debugging assistant. Identify likely root causes and provide a shortest safe fix path.</p>
+    <p><strong>User prompt:</strong><br />
+      Explain this error stack trace and give step-by-step fix instructions.</p>
+
+    <h3>Example D: Release notes</h3>
+    <p><strong>System prompt:</strong><br />
+      You are a product documentation writer. Produce clear release notes for business users.</p>
+    <p><strong>User prompt:</strong><br />
+      Create release notes from these commits grouped by features, fixes, and known issues.</p>
+
+    <h3>Example E: API test case generation</h3>
+    <p><strong>System prompt:</strong><br />
+      You are a QA architect. Generate API test scenarios with inputs, expected outputs, and validation points.</p>
+    <p><strong>User prompt:</strong><br />
+      Create test cases for POST /api/transcripts/email with success, invalid email, and server-failure paths.</p>
+
+    <h3>Example F: Incident analysis</h3>
+    <p><strong>System prompt:</strong><br />
+      You are an SRE reviewer. Provide incident timeline, probable cause, blast radius, and prevention actions.</p>
+    <p><strong>User prompt:</strong><br />
+      Analyze this audit and error history and propose prevention controls.</p>
+
+    <hr />
+    <h2>9. Troubleshooting Quick Answers</h2>
+    <h3>Token invalid or missing</h3>
+    <ul>
+      <li>Go to Settings</li>
+      <li>Save token again</li>
+      <li>Click Reload Status</li>
+    </ul>
+
+    <h3>No sessions found</h3>
+    <ul>
+      <li>Create or save session from Chat Workspace</li>
+      
+    </ul>
+
+    <h3>Email transcript</h3>
+    <ul>
+      <li>Verify SMTP host and sender in Settings</li>
+      <li>Check recipient format</li>
+      <li>Check Audit &amp; History for email records</li>
+    </ul>
+
+    <h3>Empty delete actions</h3>
+    <ul>
+      <li>This is expected behavior when list is empty</li>
+      <li>Popup message explains that nothing exists to delete</li>
+    </ul>
+
+    <h3>Model list outdated</h3>
+    <ul>
+      <li>Click Refresh Models in Settings or Chat</li>
+      <li>Recheck Cached models count</li>
+    </ul>
+  </div>
+</body>
+</html>
